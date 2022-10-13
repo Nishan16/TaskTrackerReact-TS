@@ -1,0 +1,36 @@
+
+  { "meetings" : [ {
+       "id": 1,
+       "name":"First Meeting",
+       "time": "11:30",
+       "description":"This is the description of the modal. This meeting will discuss everything happening for the company.",
+       "location" : "Waterloo Office",
+       "meeting-link" : "",
+       "attendees" : "Ayesha, Nishan"
+
+    },
+    {
+      "id": 2,
+      "name":"First Meeting",
+      "time": "11:30",
+      "description":"This is the description of the modal.",
+      "location" : "Waterloo Office",
+      "meeting-link" : "",
+      "attendees" : "Ayesha, Nishan"
+
+   },
+   {
+      "id": 3,
+      "name":"First Meeting",
+      "time": "11:30",
+      "description":"This is the description of the modal.",
+      "location" : "Waterloo Office",
+      "meeting-link" : "",
+      "attendees" : "Ayesha, Nishan"
+
+   }
+  ]
+}
+
+
+
