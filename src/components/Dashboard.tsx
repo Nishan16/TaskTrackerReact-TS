@@ -8,7 +8,7 @@ class Dashboard extends react.Component<{}, {title: string, meetings: any}>{
     constructor(props: any){
         super(props);
         this.setStateofParent.bind(this);
-        this.state = { 
+        this.state = { f
             title : "",
             meetings:
             [ {
