@@ -1,6 +1,8 @@
+import { stringify } from 'querystring';
 import React, {useContext, useState} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-const MeetingsContext = React.createContext([]);
+import {v4} from 'uuid'
+const MeetingsContext = React.createContext();
 
 
 export function useMeetings(){
@@ -17,17 +19,19 @@ export const MeetingsProvider = ({children})=> {
 
     }
 
-    function addMeeting(){
-        setMeetings(prevMeetings => {
-            return [...prevMeetings]
+    function addMeeting(name:String, time:String, description:String, location:String, meeting_link:String, attendees:String){
+        setMeetings((prevMeetings:any) => {
+            return [...prevMeetings, {
+                id: v4(), name,time,description,location,meeting_link,attendees
+            }]
         })
     }
 
-    function deleteMeeting(id){
-        setMeetings(prevMeetings => {
-            return prevMeetings.filter(meetings => meetings.id !== id);
-        })
-    }
+    // function deleteMeeting(id:any){
+    //     setMeetings((prevMeetings:any) => {
+    //         return prevMeetings.filter(meetings => meetings.id !== id);
+    //     })
+    // }
     return (
         <MeetingsContext.Provider value={{
             meetings,
