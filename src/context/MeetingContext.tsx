@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
-
-const MeetingsContext = React.createContext();
+import useLocalStorage from '../hooks/useLocalStorage';
+const MeetingsContext = React.createContext([]);
 
 
 export function useMeetings(){
@@ -9,7 +9,7 @@ export function useMeetings(){
 
 
 export const MeetingsProvider = ({children})=> {
-    const [meetings, setMeetings]= useState([]);
+    const [meetings, setMeetings]= useLocalStorage('meetings',[]);
 
 
 
@@ -19,7 +19,7 @@ export const MeetingsProvider = ({children})=> {
 
     function addMeeting(){
         setMeetings(prevMeetings => {
-            return [...prevMeetings, {id:}]
+            return [...prevMeetings]
         })
     }
 

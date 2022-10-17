@@ -1,15 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {MeetingsContext} from "./context/MeetingContext";
+import {MeetingsProvider} from "./context/MeetingContext";
 import DashBoard from './components/Dashboard';
 
 function App() {
   return (
     <>
-    <MeetingsContext>
+    <MeetingsProvider>
       <DashBoard/>
-    </MeetingsContext>
+    </MeetingsProvider>
     </>
   );
 }
