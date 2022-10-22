@@ -1,8 +1,17 @@
 import { stringify } from 'querystring';
 import React, {useContext, useState} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-import {v4} from 'uuid'
-const MeetingsContext = React.createContext();
+
+type MeetingsProviderProps = {
+    children: React.ReactNode
+}
+
+type MeetingsContext = {
+    meetings : {}
+    addMeeting: (name:String, time:String, description:String, location:String, meeting_link:String, attendees:String) => void
+    getMeetings: () => void
+}
+const MeetingsContext = React.createContext({} as MeetingsContext);
 
 
 export function useMeetings(){
@@ -10,7 +19,7 @@ export function useMeetings(){
 }
 
 
-export const MeetingsProvider = ({children})=> {
+export function MeetingsProvider  ({children}: MeetingsProviderProps ) {
     const [meetings, setMeetings]= useLocalStorage('meetings',[]);
 
 
@@ -22,7 +31,7 @@ export const MeetingsProvider = ({children})=> {
     function addMeeting(name:String, time:String, description:String, location:String, meeting_link:String, attendees:String){
         setMeetings((prevMeetings:any) => {
             return [...prevMeetings, {
-                id: v4(), name,time,description,location,meeting_link,attendees
+                id: 3, name,time,description,location,meeting_link,attendees
             }]
         })
     }
@@ -37,7 +46,7 @@ export const MeetingsProvider = ({children})=> {
             meetings,
             getMeetings,
             addMeeting,
-            deleteMeeting,
+            // deleteMeeting,
         }} >
         {children} 
         </MeetingsContext.Provider>

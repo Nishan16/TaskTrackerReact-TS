@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import "../styles.css"
-import AddTopicModal from './AddTopicalModal';
+import AddTopicModal from './AddTopicModal';
 function Header(){
-    const [showAddMeetingModal, setShowAddMeetingModal] = useState(boolean)
+    const [showAddMeetingModal, setShowAddMeetingModal] = useState(false)
     
     return(
     <>
@@ -15,10 +15,10 @@ function Header(){
                     }}>Meeting Agenda</h1>
             </div>
   
-                <button onClick={() => setShowAddMeetingModal(true)}>
+                <button onClick={() => setShowAddMeetingModal(false)}>
                     <span>New</span>
                 </button>
-            <AddTopicModal show={showAddMeetingModal} handleClose={() => setShowAddMeetingModal(false)}/>
+            <AddTopicModal show={showAddMeetingModal} handleClose={() => setShowAddMeetingModal(true)}/>
         </div>
     </> );
 
