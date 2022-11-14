@@ -1,15 +1,18 @@
+import { AllByAttribute } from '@testing-library/react';
 import { stringify } from 'querystring';
 import React, {useContext, useState} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-
+import {uid} from "uid"
 type MeetingsProviderProps = {
     children: React.ReactNode
 }
 
 type MeetingsContext = {
-    meetings : {}
+    meetings : []
     addMeeting: (name:String, time:String, description:String, location:String, meeting_link:String, attendees:String) => void
     getMeetings: () => void
+    deleteMeeting: (id:any) => void
+    editMeeting:(id:any, name:String, time:String, description:String, location:String, meeting_link:String, attendees:String) => any
 }
 const MeetingsContext = React.createContext({} as MeetingsContext);
 
@@ -31,22 +34,31 @@ export function MeetingsProvider  ({children}: MeetingsProviderProps ) {
     function addMeeting(name:String, time:String, description:String, location:String, meeting_link:String, attendees:String){
         setMeetings((prevMeetings:any) => {
             return [...prevMeetings, {
-                id: 3, name,time,description,location,meeting_link,attendees
+                id: uid() , name,time,description,location,meeting_link,attendees
             }]
         })
     }
 
-    // function deleteMeeting(id:any){
-    //     setMeetings((prevMeetings:any) => {
-    //         return prevMeetings.filter(meetings => meetings.id !== id);
-    //     })
-    // }
+    function deleteMeeting(id:any){
+        setMeetings((prevMeetings:any) => {
+            return prevMeetings.filter((meeting:any) => meeting["id"] !== id);
+        })
+    }
+
+    function editMeeting(id:any, name:String, time:String, description:String, location:String, meeting_link:String, attendees:String){
+        setMeetings((prevMeetings:any) => {
+            var oldMeetings = prevMeetings.filter((meeting:any) => meeting["id"] !== id);
+            return [...oldMeetings, {
+                id,name,time,description,location,meeting_link,attendees
+            }]
+        })}
     return (
         <MeetingsContext.Provider value={{
             meetings,
             getMeetings,
             addMeeting,
-            // deleteMeeting,
+            deleteMeeting,
+            editMeeting
         }} >
         {children} 
         </MeetingsContext.Provider>

@@ -29,8 +29,11 @@
 
 
 .Descriptions{
-    display: flex;
     justify-content: center;
+	align-items: center;
+}
+.DescriptionsClear{
+	display:none;
 }
 
 body {
